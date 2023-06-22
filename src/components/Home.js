@@ -17,7 +17,7 @@ function Home() {
         color: 'white',
       }}
     >
-        <h1>BIEVENIDOS PLAYGAME</h1>
+        <h1>BIENVENIDOS PLAYGAME</h1>
         <p>Aquí puedes  buscar tu videojuego favorito.</p>
         <button onClick={() => loginWithRedirect()} className="btn btn-danger">CREAR TU CUENTA</button>
         <p>--------------------------------------------------------------------------------------------</p>

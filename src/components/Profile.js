@@ -6,6 +6,8 @@ import 'react-json-pretty/themes/monikai.css';
 const Profile = () => {
     const {user, isAuthenticated} = useAuth0();
     return(
+      
+      
       isAuthenticated && (
         <div>
             <img src={user.picture} alt={user.name} />

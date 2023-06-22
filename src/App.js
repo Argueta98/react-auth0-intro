@@ -1,13 +1,11 @@
 import './App.css';
-import LoginButton from './components/LoginButton';
-import LogoutButton from './components/LogoutButton';
-import Conten from './components/Content';
-import Aside from './components/Aside';
+import ShowPlayGame from './components/ShowPlayGame';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Profile from './components/Profile';
 import Home from './components/Home';
 import { useAuth0 } from '@auth0/auth0-react';
+import Buscador from './components/Buscador';
 
 function App() {
   const {isAuthenticated, isLoading} =useAuth0();
@@ -15,15 +13,16 @@ function App() {
   if(isLoading) return <h1>Loading ...</h1>
   return (
     <div className="App">
-
       {
         isAuthenticated ? 
         <Header />
         : 
         <Home />
       }
-      <Profile />
-      <Aside /> 
+      <ShowPlayGame />
+      <Buscador />
+      
+    
       <Footer />
 
     </div>
