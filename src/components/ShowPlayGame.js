@@ -6,10 +6,10 @@ import withReactContent from "sweetalert2-react-content";
 import { show_alerta } from "../functions";
 
 
-const ShowPlayGame = () => {
+const ShowPlayGame = () => { //Actualizar el token
   const token ="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJmNHcwNkJPMXFGdTI0UlFFMEhiXyJ9.eyJuaWNrbmFtZSI6Impob2phaXJhbWFycXVlei45OSIsIm5hbWUiOiJqaG9qYWlyYW1hcnF1ZXouOTlAZ21haWwuY29tIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyL2QwNzI4NDkzYzQ2Y2Q4OWUyZWFjMDJiMTU0YTJkNDU5P3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGamgucG5nIiwidXBkYXRlZF9hdCI6IjIwMjMtMDYtMjJUMTU6NDU6MzguNTQzWiIsImVtYWlsIjoiamhvamFpcmFtYXJxdWV6Ljk5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczovL2Rldi1hYmJ5dGVjaC51cy5hdXRoMC5jb20vIiwiYXVkIjoienE1dUVKeTR3SHp3bmRtWTZxUjhBOTZWbm9mWXlsQzYiLCJpYXQiOjE2ODc0NDg3MzgsImV4cCI6MTY4NzQ4NDczOCwic3ViIjoiYXV0aDB8NjQ4OTNjMzBjYjcxMzgzY2U5NWJkYmQ0In0.E-0YlJwYCjfr3TSgAW536E02KYfpR2guSMxK3SC1xvpVOjX6c85zIKgiA1f2ILMr3xdcHjyJS4H2k5E6KtaqOmjLebEROu_sQt-n26jZudwllIp-66IJi9F4At9JzOpKbDemhZK-Bkn3JUyCeGkkWTnjWCKqsdYSJDk5eE1lP4YCVRw6M-6smSVlnII0CvSPStPKQxmOf6GKzQAz6QpuA4BIrtKIjeIZ5vdfKshT_w6jFOKI6NXQF8dF9vSNl_3PD6IyTd8cx51Dx6trjYpCw-HC1I9i8DE5nnG8CEUFfeWIellnyox41MFcmsa4McgFZoAtahSCIXVjHWqH-34LeQ";
   const dominio = "videogame";
-  const url ="https://et1awybnrd.execute-api.us-east-1.amazonaws.com/dev/";
+  const url ="https://et1awybnrd.execute-api.us-east-1.amazonaws.com/dev/"; //Actualizar la ruta
 
 
   const [videojuegos, setVideojuegos] = useState([]);
