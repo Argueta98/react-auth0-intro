@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Before executing the project
 ### `npm install`
 
-Then add the bootstrap dist and plugin folder to the `react-auth0-intro/public directory`
+Then add the bootstrap dist and plugin folder to the `react-auth0-intro/public directory`.\
 Open Download [bootstrap](https://getbootstrap.com/docs/4.0/getting-started/download/) 
 
 In the project directory, you can run:
