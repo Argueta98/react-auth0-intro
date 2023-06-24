@@ -10,16 +10,22 @@ import Buscador from './components/Buscador';
 function App() {
   const {isAuthenticated, isLoading} =useAuth0();
 
+
+
   if(isLoading) return <h1>Loading ...</h1>
   return (
     <div className="App">
       {
-        isAuthenticated ? 
+        isAuthenticated ? (
+        <>
         <Header />
-        : 
-        <Home />
+        <ShowPlayGame />
+        </>
+      )  : 
+         <Home />
       }
-      <ShowPlayGame />
+
+      
       <Buscador />
       
     

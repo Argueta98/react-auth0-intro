@@ -4,10 +4,13 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { show_alerta } from "../functions";
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 
 const ShowPlayGame = () => {
-  const token ="eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjJmNHcwNkJPMXFGdTI0UlFFMEhiXyJ9.eyJuaWNrbmFtZSI6Impob2phaXJhbWFycXVlei45OSIsIm5hbWUiOiJqaG9qYWlyYW1hcnF1ZXouOTlAZ21haWwuY29tIiwicGljdHVyZSI6Imh0dHBzOi8vcy5ncmF2YXRhci5jb20vYXZhdGFyL2QwNzI4NDkzYzQ2Y2Q4OWUyZWFjMDJiMTU0YTJkNDU5P3M9NDgwJnI9cGcmZD1odHRwcyUzQSUyRiUyRmNkbi5hdXRoMC5jb20lMkZhdmF0YXJzJTJGamgucG5nIiwidXBkYXRlZF9hdCI6IjIwMjMtMDYtMjJUMTU6NDU6MzguNTQzWiIsImVtYWlsIjoiamhvamFpcmFtYXJxdWV6Ljk5QGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJpc3MiOiJodHRwczovL2Rldi1hYmJ5dGVjaC51cy5hdXRoMC5jb20vIiwiYXVkIjoienE1dUVKeTR3SHp3bmRtWTZxUjhBOTZWbm9mWXlsQzYiLCJpYXQiOjE2ODc0NDg3MzgsImV4cCI6MTY4NzQ4NDczOCwic3ViIjoiYXV0aDB8NjQ4OTNjMzBjYjcxMzgzY2U5NWJkYmQ0In0.E-0YlJwYCjfr3TSgAW536E02KYfpR2guSMxK3SC1xvpVOjX6c85zIKgiA1f2ILMr3xdcHjyJS4H2k5E6KtaqOmjLebEROu_sQt-n26jZudwllIp-66IJi9F4At9JzOpKbDemhZK-Bkn3JUyCeGkkWTnjWCKqsdYSJDk5eE1lP4YCVRw6M-6smSVlnII0CvSPStPKQxmOf6GKzQAz6QpuA4BIrtKIjeIZ5vdfKshT_w6jFOKI6NXQF8dF9vSNl_3PD6IyTd8cx51Dx6trjYpCw-HC1I9i8DE5nnG8CEUFfeWIellnyox41MFcmsa4McgFZoAtahSCIXVjHWqH-34LeQ";
+
+  
   const dominio = "videogame";
   const url ="https://et1awybnrd.execute-api.us-east-1.amazonaws.com/dev/";
 
@@ -23,10 +26,7 @@ const ShowPlayGame = () => {
   const [operation, setOperation] = useState(1);
   const [title, setTitle] = useState("");
 
-  
-
- 
-
+  const { getIdTokenClaims } = useAuth0(); // Extraer la función getIdTokenClaims de useAuth0
 
   useEffect(() => {
     getVideojuegos();
@@ -34,15 +34,29 @@ const ShowPlayGame = () => {
 
   const getVideojuegos = async () => {
     try {
+      const tokenGlobal = await obtenerInformacion(); // Obtener el tokenGlobal
       const response = await axios.get(url+dominio, {
         headers: {
-          Authorization: token,
+          Authorization: tokenGlobal,
         },
       });
       setVideojuegos(response.data);
     } catch (error) {
       console.error("Error fetching videojuegos:", error);
       // Handle error display or any other logic...
+    }
+  };
+  const obtenerInformacion = async () => {
+    try {
+      const claims = await getIdTokenClaims(); // Obtener los claims del token de acceso
+      if (claims) {
+        const tokenGlobal = claims.__raw; // Obtener el token de acceso
+        return tokenGlobal; // Devolver el tokenGlobal
+      } else {
+        console.error('Los claims del token de acceso son nulos o no están definidos.');
+      }
+    } catch (error) {
+      console.error('Error al obtener los claims del token de acceso:', error);
     }
   };
 
@@ -126,12 +140,13 @@ const ShowPlayGame = () => {
     }
   }
   const enviarSolicitud = async (metodo, parametros) => {
+    const tokenGlobal = await obtenerInformacion(); // Obtener el tokenGlobal
     const config = {
       method: metodo,
       url: url + dominio + "/" + id,
       data: parametros,
       headers: {
-        Authorization: "Bearer " + token,
+        Authorization: "Bearer " + tokenGlobal,
       },
     };
       
@@ -161,6 +176,7 @@ const ShowPlayGame = () => {
   };
 
 const eliminarVideojuego = async (id, nombre) => {
+  const tokenGlobal = await obtenerInformacion();
   const MySwal = withReactContent(Swal);
   MySwal.fire({
     title: '¿Seguro que quieres eliminar este videojuego: ' + nombre + '?',
@@ -179,7 +195,7 @@ const eliminarVideojuego = async (id, nombre) => {
         url: url + dominio + "/" + id,
         data: parametros,
         headers: {
-          Authorization: "Bearer " + token,
+          Authorization: "Bearer " +  tokenGlobal,
         },
       };
       try {
