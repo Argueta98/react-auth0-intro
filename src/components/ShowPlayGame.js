@@ -9,10 +9,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 const ShowPlayGame = () => {
-
-  
+ 
   const dominio = "videogame";
-  const url ="https://et1awybnrd.execute-api.us-east-1.amazonaws.com/dev/";
+  const url ="https://et1awybnrd.execute-api.us-east-1.amazonaws.com/dev/"; //Actualizar la ruta
 
 
   const [videojuegos, setVideojuegos] = useState([]);
